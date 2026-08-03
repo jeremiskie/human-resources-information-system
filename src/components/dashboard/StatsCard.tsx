@@ -1,6 +1,12 @@
 import type { LucideIcon } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface StatsCardProps {
   title: string;
@@ -16,26 +22,53 @@ export default function StatsCard({
   icon: Icon,
 }: StatsCardProps) {
   return (
-    <Card className="border-0 shadow-sm">
-      <CardContent className="flex items-center justify-between p-6">
-        <div>
-          <p className="text-sm font-medium text-slate-500">
-            {title}
-          </p>
+    <TooltipProvider>
+      <Card className="border border-slate-200 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+        <CardContent className="p-6">
+          <div className="flex items-start justify-between gap-4">
+            <div className="min-w-0 flex-1">
+              <Tooltip>
+                {/* Nilagay ang truncate at block/w-full sa TooltipTrigger mismo */}
+                <TooltipTrigger className="block w-full truncate text-left cursor-default">
+                  <p className="truncate text-sm font-medium text-slate-500">
+                    {title}
+                  </p>
+                </TooltipTrigger>
 
-          <h2 className="mt-2 text-3xl font-bold text-slate-900">
-            {value}
-          </h2>
+                <TooltipContent>
+                  <p>{title}</p>
+                </TooltipContent>
+              </Tooltip>
 
-          <p className="mt-2 text-sm text-slate-500">
-            {description}
-          </p>
-        </div>
+              <Tooltip>
+                <TooltipTrigger className="mt-3 block w-full truncate text-left cursor-default">
+                  <h2 className="truncate text-3xl font-bold tracking-tight text-slate-900">
+                    {value}
+                  </h2>
+                </TooltipTrigger>
 
-        <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-blue-100">
-          <Icon className="h-7 w-7 text-blue-600" />
-        </div>
-      </CardContent>
-    </Card>
+                <TooltipContent>
+                  <p>{value}</p>
+                </TooltipContent>
+              </Tooltip>
+
+              <Tooltip>
+                <TooltipTrigger className="mt-2 block w-full truncate text-left cursor-default">
+                  <p className="truncate text-sm text-slate-500">
+                    {description}
+                  </p>
+                </TooltipTrigger>
+
+                <TooltipContent>
+                  <p>{description}</p>
+                </TooltipContent>
+              </Tooltip>
+            </div>
+
+            <Icon className="h-5 w-5 shrink-0 text-blue-600" />
+          </div>
+        </CardContent>
+      </Card>
+    </TooltipProvider>
   );
 }

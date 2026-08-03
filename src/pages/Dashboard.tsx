@@ -40,7 +40,7 @@ export default function Dashboard() {
 
           <StatsCard
             title="Monthly Payroll"
-            value="₱1,250,000"
+            value="₱100,250,000"
             description="July Payroll"
             icon={Wallet}
           />
