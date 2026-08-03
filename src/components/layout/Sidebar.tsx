@@ -65,7 +65,7 @@ export default function Sidebar() {
 
         <div className="ml-3">
           <h1 className="text-lg font-bold text-slate-900">
-            HRIS System
+            OmniPeople HR
           </h1>
 
           <p className="text-xs text-slate-500">
