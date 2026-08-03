@@ -1,10 +1,11 @@
 import type { ReactNode } from "react";
+import { Outlet } from "react-router"; // or "react-router-dom"
 
 import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
 
 interface DashboardLayoutProps {
-  children: ReactNode;
+  children?: ReactNode; // <- Dinagdagan ng '?' para maging optional
 }
 
 export default function DashboardLayout({
@@ -20,7 +21,8 @@ export default function DashboardLayout({
         <Topbar />
 
         <main className="flex-1 p-6">
-          {children}
+          {/* Kung may ipinasang children gagamitin iyon, kapag wala (sa React Router) Outlet ang lilitaw */}
+          {children ?? <Outlet />}
         </main>
       </div>
     </div>
